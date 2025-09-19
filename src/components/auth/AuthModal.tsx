@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eye, EyeOff, User, Mail, Calendar, GraduationCap, Building } from "lucide-react";
+import { Eye, EyeOff, User, Mail, Calendar, GraduationCap, Building, Shield } from "lucide-react";
 import { CosmicButton } from "@/components/ui/cosmic-button";
 import { CosmicCard, CosmicCardContent, CosmicCardHeader, CosmicCardTitle } from "@/components/ui/cosmic-card";
 import { Input } from "@/components/ui/input";
@@ -161,6 +161,23 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 </button>
               </div>
               {errors.password && <p className="text-destructive text-sm">{errors.password}</p>}
+            </div>
+
+            {/* Admin Code (for both login and signup) */}
+            <div className="space-y-2">
+              <Label htmlFor="adminCode" className="flex items-center gap-2">
+                <Shield className="w-4 h-4" />
+                Admin Code {isLogin ? "(Optional)" : "(Required for Admin)"}
+              </Label>
+              <Input
+                id="adminCode"
+                type="password"
+                placeholder="Enter admin code"
+                value={formData.adminCode}
+                onChange={(e) => setFormData({ ...formData, adminCode: e.target.value })}
+                className="input-cosmic"
+              />
+              {errors.adminCode && <p className="text-destructive text-sm">{errors.adminCode}</p>}
             </div>
 
             {/* Sign Up Fields */}
